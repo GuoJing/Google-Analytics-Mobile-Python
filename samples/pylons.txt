@@ -1,0 +1,34 @@
+How to use in pylons
+
+1.Create a controller
+
+class GaController(BaseController):                                                  
+    
+    def img(self):
+        response.headers['Content-type'] = 'image/gif'                               
+        environ = request.environ 
+        res = track_page_view(environ)                                               
+        return res.get('response_body')                                              
+                                                                                     
+    def sample(self):
+        icon = gen_ga_imgurl()                                                       
+        return icon 
+
+2.Write a utils function
+
+def gen_ga_imgurl():
+    IMAGE_URL = url(controller='ga', action='img')
+    env = request.environ
+    referer = request.referer
+    query = request.query_string
+    path = request.path
+    referer = quote(referer, safe='')
+    path = '&utmp=%s' % quote(path, safe='') if path else ''
+    icon_url = ('%s?utmac=%s&utmn=%s&utmr=%s%s&guid=%s' %
+        (IMAGE_URL, GA_ACCOUNT, randint(0, 0x7fffffff), referer,
+        path, 'ON'))
+    return icon_url
+
+3.In your web (mako)
+
+<img src="${gen_ga_imgurl()}"/>
