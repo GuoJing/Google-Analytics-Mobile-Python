@@ -8,3 +8,4 @@ HOW TO USE
 1.run server.py
 2.run sample in samples folder
 
+EASY TO USE :)
