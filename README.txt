@@ -9,3 +9,6 @@ HOW TO USE
 2.run sample in samples folder
 
 EASY TO USE :)
+
+#BUG FIX
+1.fix only 1 user and 500 page view per day of ga.py
