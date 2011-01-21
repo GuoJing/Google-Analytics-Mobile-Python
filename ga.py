@@ -98,6 +98,26 @@ def send_request_to_google_analytics(utm_url, environ):
             pass
 
         
+def gen_utma():
+    domain_name = 'm.douban.com'
+    domain_hash = 0
+    g = 0
+
+    i = len(domain_name) - 1
+
+    while i>=0:
+        c = ord(domain_name[i])
+        domain_hash = ((domain_hash << 6) & 0xfffffff) + c + (c << 14)
+        g = domain_hash & 0xfe00000
+        if g!=0:
+            domain_hash = domain_hash ^ (g >> 21)
+        i = i - 1
+    rnd_num = str(randint(1147483647, 2147483647)) 
+    time_num = str(time.time()).split('.')[0]
+    _utma = '%s.%s.%s.%s.%s.%s' % (domain_hash, rnd_num, time_num,
+        time_num, time_num, 1) 
+    return _utma
+        
 def parse_cookie(cookie):
     """ borrowed from django.http """
     if cookie == '':
@@ -155,14 +175,12 @@ def track_page_view(environ):
                 "utmwv=" + VERSION + \
                 "&utmn=" + get_random_number() + \
                 "&utmhn=" + quote(domain) + \
-                "&utmsr=" + environ['GET'].get('utmsr', '') + \
-                "&utme=" + environ['GET'].get('utme', '') + \
                 "&utmr=" + quote(document_referer) + \
                 "&utmp=" + quote(document_path) + \
                 "&utmac=" + utmac + \
-                "&utmcc=__utma%3D999.999.999.999.999.1%3B" + \
-                "&utmvid=" + visitor_id + \
-                "&utmip=" + get_ip(environ.get("REMOTE_ADDR",''))
+                "&utmcc=__utma" + "%3D" + gen_utma() + "%3B"
+                #"&utmvid=" + visitor_id + \
+                #"&utmip=" + get_ip(environ.get("REMOTE_ADDR",''))
         send_request_to_google_analytics(utm_url, environ)
 
     headers = [('Set-Cookie', str(cookie).split(': ')[1])]
