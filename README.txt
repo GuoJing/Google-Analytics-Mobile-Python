@@ -1,3 +1,5 @@
+*******************************************************************************************
+
 Thanks the author who translate ga.php to ga.py
 https://github.com/b1tr0t/Google-Analytics-for-Mobile--python-
 
@@ -22,3 +24,15 @@ EASY TO USE :)
 #KNOWN ISSUE
 1.could not track ip of user, so you can't get location
 2.every user is new user
+
+*******************************************************************************************
+
+GA SENDER
+
+send ga data by using command line
+
+HOW TO USE
+
+python ga_sender.py
+
+*******************************************************************************************
