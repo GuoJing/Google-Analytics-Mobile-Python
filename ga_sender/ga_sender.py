@@ -119,5 +119,7 @@ def send_to_ga(environ):
     g = GoogleAnlayticsMobile('UA-15296817-5', 'www.jguoer.com', environ)
     send_request_to_google_analytics(g.get_imgurl(), environ)
 
+## e is environ dict
+## this sample is send ga by reading web log
 e = {'domain': 'www.jguoer.com', 'protocol': 'HTTP/1.1', 'uid': '39454209', 'status_code': '200', 'url': '/?session=3fd90546_39454209', 'ip': '122.192.166.136', 'bid': '4979797d', 'time': '2011-1-28 14:40:35 +0800', 'page_size': '3821', 'referer': 'http://www.jguoer.com/?session=6acf607a_39454209', 'user_agent': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; zh-cn) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8B117 Safari/6531.22.7', 'process_time': '0', 'method': 'GET'}
 send_to_ga(e)
