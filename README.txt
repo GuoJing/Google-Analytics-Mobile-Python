@@ -1,6 +1,6 @@
 LATEST CODE IN PRE-REPEASE BRANCH
 
-*******************************************************************************************
+**********************************
 
 Thanks the author who translate ga.php to ga.py
 https://github.com/b1tr0t/Google-Analytics-for-Mobile--python-
@@ -27,7 +27,7 @@ EASY TO USE :)
 1.could not track ip of user, so you can't get location
 2.every user is new user
 
-*******************************************************************************************
+**********************************
 
 GA SENDER
 
@@ -37,4 +37,6 @@ HOW TO USE
 
 python ga_sender.py
 
-*******************************************************************************************
+**********************************
+
+you can take a look at http://m.douban.com
